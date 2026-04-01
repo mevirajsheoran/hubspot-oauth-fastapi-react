@@ -2,6 +2,7 @@
 
 import json
 import secrets
+from typing import List, Dict, Any, Optional
 from fastapi import Request, HTTPException
 from fastapi.responses import HTMLResponse
 import httpx
@@ -23,7 +24,7 @@ authorization_url = (
 )
 
 
-async def authorize_hubspot(user_id, org_id):
+async def authorize_hubspot(user_id: str, org_id: str) -> str:
     state_data = {
         'state': secrets.token_urlsafe(32),
         'user_id': user_id,
@@ -81,7 +82,7 @@ async def oauth2callback_hubspot(request: Request):
     return HTMLResponse(content=close_window_script)
 
 
-async def get_hubspot_credentials(user_id, org_id):
+async def get_hubspot_credentials(user_id: str, org_id: str) -> Dict[str, Any]:
     credentials = await get_value_redis(f'hubspot_credentials:{org_id}:{user_id}')
     if not credentials:
         raise HTTPException(status_code=400, detail='No credentials found.')
@@ -124,7 +125,7 @@ def create_integration_item_metadata_object(
     return integration_item_metadata
 
 
-def _fetch_hubspot_objects(access_token: str, object_type: str, properties: list, aggregated: list):
+def _fetch_hubspot_objects(access_token: str, object_type: str, properties: List[str], aggregated: List[Dict[str, Any]]) -> None:
     """Fetch all objects of a given type from HubSpot CRM with pagination."""
     url = f'https://api.hubapi.com/crm/v3/objects/{object_type}'
     headers = {'Authorization': f'Bearer {access_token}'}
@@ -152,7 +153,7 @@ def _fetch_hubspot_objects(access_token: str, object_type: str, properties: list
         params = {} if url else params
 
 
-async def get_items_hubspot(credentials) -> list[IntegrationItem]:
+async def get_items_hubspot(credentials: str) -> List[IntegrationItem]:
     """Aggregates all CRM metadata relevant for a HubSpot integration."""
     credentials = json.loads(credentials)
     access_token = credentials.get('access_token')
