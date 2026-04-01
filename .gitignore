@@ -1,27 +1,44 @@
+# Pipeline AI Integration Project - Git Ignore
+# ===========================================
+
 # Python / FastAPI
 backend/__pycache__/
-backend/*.pyc
-backend/*.pyo
-backend/*.pyd
+backend/*.py[cod]
+backend/$py.class/
+backend/*.so
 backend/.Python
 backend/env/
 backend/venv/
 backend/.venv/
 backend/pip-log.txt
 backend/pip-delete-this-directory.txt
+backend/.coverage
+backend/htmlcov/
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend.dmypy.json
+backend.dmypy.sqlite3
 
 # Node / React
 frontend/node_modules/
 frontend/build/
 frontend/dist/
 frontend/.npm
+frontend/.cache/
 frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/.eslintcache
 
 # Database & Cache
 dump.rdb
 *.sqlite3
+*.sqlite
+*.db
 
 # Environment Variables
 .env
@@ -35,19 +52,54 @@ dump.rdb
 .idea/
 *.swp
 *.swo
-
-# OS Data
+*~
 .DS_Store
 .AppleDouble
 .LSOverride
+Thumbs.db
+ehthumbs.db
 
-# Artifacts & Outputs
-*.zip
+# Logs & Runtime
 *.log
+logs/
+*.pid
+*.seed
+*.pid.lock
 
+# Coverage & Testing
+coverage/
+.nyc_output/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
 
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+
+# Package Managers
+package-lock.json
+yarn.lock
+requirements-dev.txt
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project Specific
 documentation.md 
-
 Integrations Technical Assessment Instructions.pdf
-
 commit_history.ps1
