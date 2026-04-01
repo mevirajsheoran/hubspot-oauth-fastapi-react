@@ -5,7 +5,24 @@ from integrations.airtable import authorize_airtable, get_items_airtable, oauth2
 from integrations.notion import authorize_notion, get_items_notion, oauth2callback_notion, get_notion_credentials
 from integrations.hubspot import authorize_hubspot, get_hubspot_credentials, get_items_hubspot, oauth2callback_hubspot
 
-app = FastAPI()
+"""
+Pipeline AI Integration Service
+================================
+
+FastAPI application providing OAuth2 integration endpoints for various services:
+- Airtable
+- Notion  
+- HubSpot
+
+Each integration supports authorization, callback handling, credential management,
+and data retrieval operations.
+"""
+
+app = FastAPI(
+    title="Pipeline AI Integration Service",
+    description="OAuth2 integration service for Airtable, Notion, and HubSpot",
+    version="1.0.0"
+)
 
 origins = [
     "http://localhost:3000",  # React app address
@@ -21,6 +38,12 @@ app.add_middleware(
 
 @app.get('/')
 def read_root():
+    """
+    Health check endpoint
+    
+    Returns:
+        dict: Simple ping/pong response to verify service is running
+    """
     return {'Ping': 'Pong'}
 
 
