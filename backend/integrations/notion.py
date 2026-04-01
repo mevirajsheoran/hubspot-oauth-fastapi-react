@@ -2,6 +2,7 @@
 
 import json
 import secrets
+from typing import List, Dict, Any, Optional
 from fastapi import Request, HTTPException
 from fastapi.responses import HTMLResponse
 import httpx
@@ -19,7 +20,7 @@ encoded_client_id_secret = base64.b64encode(f'{CLIENT_ID}:{CLIENT_SECRET}'.encod
 REDIRECT_URI = 'http://localhost:8000/integrations/notion/oauth2callback'
 authorization_url = f'https://api.notion.com/v1/oauth/authorize?client_id={CLIENT_ID}&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fintegrations%2Fnotion%2Foauth2callback'
 
-async def authorize_notion(user_id, org_id):
+async def authorize_notion(user_id: str, org_id: str) -> str:
     state_data = {
         'state': secrets.token_urlsafe(32),
         'user_id': user_id,
@@ -74,7 +75,7 @@ async def oauth2callback_notion(request: Request):
     """
     return HTMLResponse(content=close_window_script)
 
-async def get_notion_credentials(user_id, org_id):
+async def get_notion_credentials(user_id: str, org_id: str) -> Dict[str, Any]:
     credentials = await get_value_redis(f'notion_credentials:{org_id}:{user_id}')
     if not credentials:
         raise HTTPException(status_code=400, detail='No credentials found.')
@@ -85,7 +86,7 @@ async def get_notion_credentials(user_id, org_id):
 
     return credentials
 
-def _recursive_dict_search(data, target_key):
+def _recursive_dict_search(data: Dict[str, Any], target_key: str) -> Optional[Any]:
     """Recursively search for a key in a dictionary of dictionaries."""
     if target_key in data:
         return data[target_key]
@@ -135,7 +136,7 @@ def create_integration_item_metadata_object(
 
     return integration_item_metadata
 
-async def get_items_notion(credentials) -> list[IntegrationItem]:
+async def get_items_notion(credentials: str) -> List[IntegrationItem]:
     """Aggregates all metadata relevant for a notion integration"""
     credentials = json.loads(credentials)
     response = requests.post(
