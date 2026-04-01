@@ -1,7 +1,13 @@
 {
-  "name": "frontend",
+  "name": "pipeline-ai-integration-frontend",
   "version": "0.1.0",
+  "description": "Frontend for Pipeline AI Integration Manager - OAuth2 integration management for Airtable, Notion, and HubSpot",
   "private": true,
+  "homepage": ".",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mevirajsheoran/hubspot-oauth-fastapi-react"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -20,8 +26,21 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "echo 'Linting not configured'",
+    "format": "echo 'Formatting not configured'",
+    "dev": "react-scripts start"
   },
+  "keywords": [
+    "react",
+    "oauth2",
+    "integration",
+    "airtable",
+    "notion",
+    "hubspot",
+    "pipeline-ai",
+    "fastapi"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
