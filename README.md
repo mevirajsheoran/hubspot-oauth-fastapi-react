@@ -1,5 +1,4 @@
-# Pipeline AI - Integration Engine Assessment
-
+# Pipeline AI - Integration Engine 
 This repository contains my submission for the **Pipeline AI Integrations Technical Assessment**. 
 
 The goal of this project is to implement a robust, scalable, and secure full-stack integration connecting **HubSpot's CRM API** to a multi-tenant platform, mimicking existing scalable integration patterns (Airtable and Notion). 
@@ -128,9 +127,6 @@ HUBSPOT_CLIENT_SECRET=your_hubspot_client_secret
 
 This project serves as a technical assessment. For understanding the implementation details and architectural decisions, please refer to the [documentation.md](./documentation.md) file.
 
-## 📄 License
-
-This project is submitted as part of a technical assessment and may not be subject to standard licensing terms.
 
 ## 📂 Architecture & Documentation
 
